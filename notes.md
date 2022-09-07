@@ -1,4 +1,9 @@
-# AWS Certified Cloud Practitioner - 2022
+# Notes from AWS ccp and csaa
+
+From Udemy: 
+* [ccp (Ultimate AWS Certified Cloud Practitioner - 2022)](https://www.udemy.com/course/aws-certified-cloud-practitioner-new) 
+* [saa-c03 (Ultimate AWS Certified Solutions Architect Associate SAA-C03)](https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03)
+
 
 * [Find out](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&loc=4) if your service is available in your Region
 * Customer responsibility *in* the cloud
@@ -225,3 +230,16 @@ Decoupling your applications is an important principle that is exploited by SNS 
 ## SQS 
 
 * Message visibility timeout: avoiding that message is read by other consumers - default 30 sec
+* SQS dead letter queue (DLQ)
+	* For consumer failing to process a message within v timeout
+	* Message goes back to queue
+	* Upon exceeding the MaximumReceives threshold message is moved to DLQ
+	* Useful for debugging
+		* Expiration time for DLQ ~ 14d
+* Long polling 
+	* Decreases number of api calls made to SQS &rarr; efficiency ++; latency ++
+	* LP preferable to short p
+
+* SQS - Request-Response Systems
+	* Implemented by use of SQS Temporary Queue Client
+	* Leverages virtual queues instead of creating/deleting SQS queues &rarr; cost
